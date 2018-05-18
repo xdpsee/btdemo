@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="configs" class="com.zhenhui.demo.falcon.core.domain.Configs">
+        <property name="attributes">
+            <map>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="context" class="com.zhenhui.demo.falcon.core.support.Context">
+        <constructor-arg name="configs" ref="configs"/>
+        <constructor-arg name="deviceService" ref="deviceServiceImpl"/>
+        <constructor-arg name="positionService" ref="positionServiceImpl"/>
+        <constructor-arg name="eventService" ref="eventServiceImpl"/>
+    </bean>
+
+    <bean id="server" class="com.zhenhui.demo.falcon.core.server.DefaultServer"
+          init-method="start">
+        <constructor-arg name="connectors">
+            <list>
+                <bean class="com.zhenhui.demo.falcon.server.mobile.MobileServerConnector">
+                    <constructor-arg name="context" ref="context"/>
+                    <property name="port" value="8801"/>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+
+</beans>

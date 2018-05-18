@@ -104,6 +104,11 @@ public final class Position extends Attributes implements Message {
     private Network network;
 
     @Override
+    public UniqueID deviceId() {
+        return deviceId;
+    }
+
+    @Override
     public byte[] rawBytes() {
         if (hasKey(KEY_ORIGINAL)) {
             String hexStr = getString(KEY_ORIGINAL);

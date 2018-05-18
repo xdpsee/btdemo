@@ -5,19 +5,24 @@ import lombok.Data;
 @Data
 public class Device extends Attributes {
 
-    public static final String KEY_LAST_POSITION = "last-pos";
-
     private UniqueID id;
 
     private String protocol;
 
     private String model;
 
-    private String name;
+    // 扩展属性
 
-    private String phone;
+    public static final String KEY_LAST_POSITION = "last.pos";
 
-    private String contacts;
+    public static final String KEY_SPEED_LIMIT = "speed.limit";
+
+    public static final String KEY_MAINTENANCE_START = "maintenance.start";
+
+    public static final String KEY_MAINTENANCE_INTERVAL = "maintenance.interval";
+
+
+
 
 
 

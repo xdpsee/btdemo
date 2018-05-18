@@ -33,6 +33,14 @@ public class Attributes implements Serializable {
         }
     }
 
+    public double getDouble(String key, double defaultValue) {
+        if (attributes.containsKey(key)) {
+            return ((Number) attributes.get(key)).doubleValue();
+        } else {
+            return defaultValue;
+        }
+    }
+
     public boolean getBoolean(String key) {
         if (attributes.containsKey(key)) {
             return Boolean.parseBoolean(attributes.get(key).toString());

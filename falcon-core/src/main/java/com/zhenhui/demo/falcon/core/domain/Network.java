@@ -7,7 +7,11 @@ import lombok.Data;
 
 @Data
 public class Network {
-    
+
+    public Network() {
+
+    }
+
     public Network(CellTower cellTower) {
         cellTowers.add(cellTower);
     }

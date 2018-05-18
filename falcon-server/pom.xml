@@ -13,6 +13,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.zhenhui.demo</groupId>
             <artifactId>falcon-data</artifactId>
             <version>1.0-SNAPSHOT</version>

@@ -24,4 +24,7 @@ public class Event extends Attributes {
         this.deviceId = deviceId;
     }
 
+    // 扩展属性
+
+    public static final String SPEED = "speed";
 }
