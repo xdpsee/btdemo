@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@ImportResource("classpath:server.xml")
+@ImportResource({"classpath:server.xml", "classpath:id-gen.xml"})
 @ComponentScan("com.zhenhui.demo.falcon")
 public class Application {
 

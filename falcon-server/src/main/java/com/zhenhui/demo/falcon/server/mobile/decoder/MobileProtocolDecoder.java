@@ -18,6 +18,7 @@ import com.zhenhui.demo.falcon.core.support.utils.ChannelAttribute;
 import com.zhenhui.demo.falcon.core.support.utils.ChannelAttributesUtils;
 import com.zhenhui.demo.falcon.core.support.utils.Parser;
 import com.zhenhui.demo.falcon.core.support.utils.PatternBuilder;
+import com.zhenhui.demo.falcon.server.common.IdGenerator;
 import com.zhenhui.demo.falcon.server.mobile.message.RegistryMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
@@ -51,11 +52,6 @@ public class MobileProtocolDecoder extends AbstractProtocolDecoder {
         return format;
     });
 
-    /**
-     * ##1,{protocol_version},{imei},{app_version},{gmt_time}#
-     * ##2,{protocol_version},{imei},{N2240.8887E11359.2994},{alt},{speed},{gmt_time}#
-     * ##3,{protocol_version},{imei},{gmt_time}#
-     */
     @Override
     public Object decode(Channel channel, SocketAddress remoteAddress, Object msg) throws DecodeException {
 
@@ -72,56 +68,19 @@ public class MobileProtocolDecoder extends AbstractProtocolDecoder {
         return null;
     }
 
+    /**
+     * ##1,{protocol_version},{imei},{app_version},{gmt_time}#
+     * ##2,{protocol_version},{imei},{N2240.8887E11359.2994},{alt},{speed},{gmt_time}#
+     * ##3,{protocol_version},{imei},{gmt_time}#
+     */
     private Message handle(Channel channel, String message) throws DecodeException {
 
         if (message.startsWith("##1")) {
-            Parser parser = new Parser(PATTERN_LOGIN, message);
-            if (parser.matches()) {
-                parser.nextInt(); // skip cmd
-                return new RegistryMessage(parser.nextDouble()
-                        , parser.next()
-                        , parser.nextDouble()
-                        , parser.next()
-                        , message);
-            }
+            return parseRegistryMessage(message);
         }
 
         if (message.startsWith("##2")) {
-            Parser parser = new Parser(PATTERN_POSITION, message);
-            if (parser.matches()) {
-                parser.nextInt(); // skip cmd
-
-                UniqueID deviceId = (UniqueID) ChannelAttributesUtils.get(channel, ChannelAttribute.DEVICE_ID);
-                if (null == deviceId) {
-                    throw new DecodeException("device is not login.");
-                }
-
-                Position position = new Position();
-                position.setDeviceId(deviceId);
-                position.setLocated(true);
-
-                parser.nextDouble(); // skip ProtocolVersion
-                parser.next(); // skip UniqueId
-                double latitude = parser.nextCoordinate(Parser.CoordinateFormat.HEM_DEG_MIN);
-                double longitude = parser.nextCoordinate(Parser.CoordinateFormat.HEM_DEG_MIN);
-                position.setLatitude(latitude);
-                position.setLongitude(longitude);
-                double altitude = parser.nextDouble();
-                position.setAltitude(altitude);
-                double speed = parser.nextDouble();
-                position.setSpeed(speed);
-                String timeStr = parser.next();
-                try {
-                    Date date = DATE_FORMAT.get().parse(timeStr);
-                    position.setTime(date);
-                } catch (ParseException e) {
-                    throw new DecodeException(e);
-                }
-
-                position.setNetwork(new Network());
-
-                return position;
-            }
+            return parsePosition(channel, message);
         }
 
         if (message.startsWith("##3")) {
@@ -131,7 +90,60 @@ public class MobileProtocolDecoder extends AbstractProtocolDecoder {
         return null;
     }
 
+    private Message parseRegistryMessage(String message) {
+        Parser parser = new Parser(PATTERN_LOGIN, message);
+        if (parser.matches()) {
+            parser.nextInt(); // skip cmd
+            return new RegistryMessage(parser.nextDouble()
+                , parser.next()
+                , parser.nextDouble()
+                , parser.next()
+                , message);
+        }
 
+        return null;
+    }
+
+    private Position parsePosition(Channel channel, String message) throws DecodeException {
+        Parser parser = new Parser(PATTERN_POSITION, message);
+        if (parser.matches()) {
+            parser.nextInt(); // skip cmd
+
+            UniqueID deviceId = (UniqueID) ChannelAttributesUtils.get(channel, ChannelAttribute.DEVICE_ID);
+            if (null == deviceId) {
+                throw new DecodeException("device is not login.");
+            }
+
+            Position position = new Position();
+            position.setId(IdGenerator.next());
+            position.setDeviceId(deviceId);
+            position.setLocated(true);
+
+            parser.nextDouble(); // skip ProtocolVersion
+            parser.next(); // skip UniqueId
+            double latitude = parser.nextCoordinate(Parser.CoordinateFormat.HEM_DEG_MIN);
+            double longitude = parser.nextCoordinate(Parser.CoordinateFormat.HEM_DEG_MIN);
+            position.setLatitude(latitude);
+            position.setLongitude(longitude);
+            double altitude = parser.nextDouble();
+            position.setAltitude(altitude);
+            double speed = parser.nextDouble();
+            position.setSpeed(speed);
+            String timeStr = parser.next();
+            try {
+                Date date = DATE_FORMAT.get().parse(timeStr);
+                position.setTime(date);
+            } catch (ParseException e) {
+                throw new DecodeException(e);
+            }
+
+            position.setNetwork(new Network());
+
+            return position;
+        }
+
+        return null;
+    }
 
 }
 

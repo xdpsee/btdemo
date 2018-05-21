@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhenhui.demo.falcon.service.mybatis.mapper.EventMapper">
+    <resultMap id="eventMap" type="com.zhenhui.demo.falcon.core.domain.Event">
+        <result property="deviceId"
+                javaType="com.zhenhui.demo.falcon.core.domain.UniqueID"
+                column="device_id"
+                jdbcType="VARCHAR"
+                typeHandler="com.zhenhui.demo.falcon.service.mybatis.typehandler.UniqueIDTypeHandler"/>
+        <result property="positionId" javaType="Long" column="position_id" jdbcType="BIGINT"/>
+        <result property="type"
+                javaType="com.zhenhui.demo.falcon.core.domain.EventType"
+                column="type"
+                jdbcType="VARCHAR"
+                typeHandler="com.zhenhui.demo.falcon.service.mybatis.typehandler.EventTypeHandler"/>
+        <result property="time" javaType="java.util.Date" column="time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.zhenhui.demo.falcon.core.domain.Event">
+        insert into `events` (
+            device_id,
+            type,
+            `time`,
+            position_id,
+            attributes
+        ) values (
+            #{deviceId},
+            #{type},
+            #{time},
+            #{positionId},
+            #{attributes}
+        );
+    </insert>
+
+</mapper>

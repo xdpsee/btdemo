@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhenhui.demo.falcon.service.mybatis.mapper.PositionMapper">
+    <resultMap id="positionMap" type="com.zhenhui.demo.falcon.core.domain.Position">
+        <result property="id" javaType="Long" column="id" jdbcType="BIGINT"/>
+        <result property="deviceId" javaType="Long" column="device_id" jdbcType="VARCHAR"
+                typeHandler="com.zhenhui.demo.falcon.service.mybatis.typehandler.UniqueIDTypeHandler"/>
+        <result property="time" javaType="java.util.Date" column="time" jdbcType="TIMESTAMP"/>
+        <result property="located" javaType="boolean" column="located" jdbcType="TINYINT"/>
+        <result property="latitude" javaType="double" column="latitude" jdbcType="DOUBLE"/>
+        <result property="longitude" javaType="double" column="longitude" jdbcType="DOUBLE"/>
+        <result property="altitude" javaType="double" column="altitude" jdbcType="DOUBLE"/>
+        <result property="course" javaType="double" column="course" jdbcType="DOUBLE"/>
+        <result property="accuracy" javaType="double" column="accuracy" jdbcType="DOUBLE"/>
+        <result property="attributes" javaType="com.zhenhui.demo.falcon.core.domain.Attributes"
+                column="attributes" jdbcType="VARCHAR"
+                typeHandler="com.zhenhui.demo.falcon.service.mybatis.typehandler.AttributesTypeHandler"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.zhenhui.demo.falcon.core.domain.Position">
+        insert into positions (
+            id,
+            device_id,
+            `time`,
+            located,
+            latitude,
+            longitude,
+            altitude,
+            course,
+            accuracy,
+            attributes
+        ) values (
+            #{id},
+            #{deviceId},
+            #{time},
+            #{latitude},
+            #{longitude},
+            #{altitude},
+            #{course},
+            #{accuracy},
+            #{attributes}
+        );
+    </insert>
+
+
+</mapper>
+

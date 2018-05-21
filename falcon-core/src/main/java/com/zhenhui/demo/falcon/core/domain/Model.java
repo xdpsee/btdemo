@@ -8,9 +8,9 @@ import lombok.Data;
 @Data
 public class Model extends Attributes {
 
-    private String protocol;
-
     private String model;
+
+    private String protocol;
 
     private List<CommandType> supportedCommands = new ArrayList<>();
 }

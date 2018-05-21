@@ -7,8 +7,6 @@ import lombok.Data;
 @Data
 public class Event extends Attributes {
 
-    private Long id;
-
     private UniqueID deviceId;
 
     private Long positionId;

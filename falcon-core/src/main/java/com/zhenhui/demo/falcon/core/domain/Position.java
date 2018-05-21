@@ -89,14 +89,13 @@ public final class Position extends Attributes implements Message {
     public static final String PREFIX_IO = "io";
     public static final String PREFIX_COUNT = "count";
 
-
     private Long id;
     private UniqueID deviceId;
+    private Date time;
     private boolean located;
     private double latitude;
     private double longitude;
     private double altitude;
-    private Date time;
     private double speed; // value in knots
     private double course;
     private double accuracy;
