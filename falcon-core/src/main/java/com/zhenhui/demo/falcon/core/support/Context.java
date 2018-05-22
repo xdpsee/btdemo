@@ -1,9 +1,9 @@
 package com.zhenhui.demo.falcon.core.support;
 
 import com.zhenhui.demo.falcon.core.domain.Configs;
-import com.zhenhui.demo.falcon.core.service.DeviceService;
-import com.zhenhui.demo.falcon.core.service.EventService;
-import com.zhenhui.demo.falcon.core.service.PositionService;
+import com.zhenhui.demo.falcon.core.manager.DeviceManager;
+import com.zhenhui.demo.falcon.core.manager.EventManager;
+import com.zhenhui.demo.falcon.core.manager.PositionManager;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -14,12 +14,12 @@ public final class Context {
     private final Configs configs;
 
     @Getter
-    private final DeviceService deviceService;
+    private final DeviceManager deviceManager;
 
     @Getter
-    private final PositionService positionService;
+    private final PositionManager positionManager;
 
     @Getter
-    private final EventService eventService;
+    private final EventManager eventManager;
 
 }

@@ -39,7 +39,7 @@ public abstract class AbstractProtocol implements Protocol {
 
     @Override
     public void sendCommand(Connection connection, Command command) {
-        Set<CommandType> supportedCommands = context.getDeviceService().getSupportedCommands(connection.getDeviceId());
+        Set<CommandType> supportedCommands = context.getDeviceManager().getSupportedCommands(connection.getDeviceId());
         if (supportedCommands.contains(command.getType())) {
             connection.write(command);
         } else if (command.getType().equals(CommandType.TYPE_CUSTOM)) {

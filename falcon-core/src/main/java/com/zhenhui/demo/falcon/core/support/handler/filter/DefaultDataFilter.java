@@ -21,7 +21,7 @@ public final class DefaultDataFilter extends AbstractDataHandler {
     protected Position handlePosition(Position position) {
 
         if (position != null) {
-            Position lastPos = context.getPositionService().getLastPosition(position.getDeviceId());
+            Position lastPos = context.getPositionManager().getLastPosition(position.getDeviceId());
 
             try {
                 if (filterPolicy != null && !filterPolicy.accept(position, lastPos)) {

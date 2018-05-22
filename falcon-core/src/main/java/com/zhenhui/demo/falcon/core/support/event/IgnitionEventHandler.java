@@ -34,7 +34,7 @@ public class IgnitionEventHandler extends AbstractEventHandler {
 
     @Override
     protected Collection<Event> analyzePosition(Position position) {
-        Device device = context.getDeviceService().queryDevice(position.getDeviceId());
+        Device device = context.getDeviceManager().getDevice(position.getDeviceId());
         if (device == null || !positionService().isLastPosition(position)) {
             return null;
         }

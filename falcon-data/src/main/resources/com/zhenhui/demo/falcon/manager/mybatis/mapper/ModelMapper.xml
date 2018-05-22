@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhenhui.demo.falcon.manager.mybatis.mapper.ModelMapper">
+    <resultMap id="modelMap" type="com.zhenhui.demo.falcon.core.domain.Model">
+        <result property="name" javaType="java.lang.String" column="name" jdbcType="VARCHAR"/>
+        <result property="protocol" javaType="java.lang.String" column="protocol" jdbcType="VARCHAR"/>
+        <result property="supportedCommands" javaType="List"
+                column="supported_commands" jdbcType="VARCHAR"
+                typeHandler="com.zhenhui.demo.falcon.manager.mybatis.handlers.CommandTypeListTypeHandler"/>
+        <result property="attributes" javaType="com.zhenhui.demo.falcon.core.domain.Attributes"
+                column="attributes" jdbcType="VARCHAR"
+                typeHandler="com.zhenhui.demo.falcon.manager.mybatis.handlers.MapTypeHandler"/>
+    </resultMap>
+
+    <select id="selectByName" resultMap="modelMap">
+        select *
+        from models
+        where `name` = #{name}
+        limit 1
+    </select>
+
+    <insert id="insert" parameterType="com.zhenhui.demo.falcon.core.domain.Model">
+        insert into models (
+            `name`,
+            protocol,
+            supported_commands,
+            attributes
+        ) values (
+            #{name},
+            #{protocol},
+            #{supportedCommands},
+            #{attributes}
+        );
+    </insert>
+
+</mapper>
+

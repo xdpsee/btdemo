@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class Model extends Attributes {
 
-    private String model;
+    private String name;
 
     private String protocol;
 

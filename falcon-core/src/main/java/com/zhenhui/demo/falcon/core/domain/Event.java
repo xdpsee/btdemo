@@ -9,13 +9,13 @@ public class Event extends Attributes {
 
     private UniqueID deviceId;
 
-    private Long positionId;
-
     private EventType type;
+
+    private long positionId;
 
     private Date time;
 
-    public Event(EventType type, UniqueID deviceId, Long positionId) {
+    public Event(EventType type, UniqueID deviceId, long positionId) {
         this.type = type;
         this.positionId = positionId;
         this.time = new Date();

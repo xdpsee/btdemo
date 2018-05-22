@@ -38,7 +38,7 @@ public class MotionEventHandler extends AbstractEventHandler {
     @Override
     protected Collection<Event> analyzePosition(Position position) {
 
-        Device device = deviceService().queryDevice(position.getDeviceId());
+        Device device = deviceService().getDevice(position.getDeviceId());
         if (null == device) {
             return null;
         }

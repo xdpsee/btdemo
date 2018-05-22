@@ -1,5 +1,7 @@
 package com.zhenhui.demo.falcon.core.domain;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -7,9 +9,13 @@ public class Device extends Attributes {
 
     private UniqueID id;
 
+    private String model;
+
     private String protocol;
 
-    private String model;
+    private Date gmtCreate;
+
+    private Date gmtUpdate;
 
     // 扩展属性
 
@@ -20,10 +26,5 @@ public class Device extends Attributes {
     public static final String KEY_MAINTENANCE_START = "maintenance.start";
 
     public static final String KEY_MAINTENANCE_INTERVAL = "maintenance.interval";
-
-
-
-
-
 
 }
