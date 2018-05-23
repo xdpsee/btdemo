@@ -12,6 +12,7 @@
         <result property="latitude" javaType="double" column="latitude" jdbcType="DOUBLE"/>
         <result property="longitude" javaType="double" column="longitude" jdbcType="DOUBLE"/>
         <result property="altitude" javaType="double" column="altitude" jdbcType="DOUBLE"/>
+        <result property="speed" javaType="double" column="speed" jdbcType="DOUBLE"/>
         <result property="course" javaType="double" column="course" jdbcType="DOUBLE"/>
         <result property="accuracy" javaType="double" column="accuracy" jdbcType="DOUBLE"/>
         <result property="outdated" javaType="boolean" column="outdated" jdbcType="TINYINT"/>
@@ -33,6 +34,7 @@
             longitude,
             altitude,
             course,
+            speed,
             accuracy,
             outdated,
             network,
@@ -41,10 +43,12 @@
             #{id},
             #{deviceId},
             #{time},
+            #{located},
             #{latitude},
             #{longitude},
             #{altitude},
             #{course},
+            #{speed},
             #{accuracy},
             #{outdated},
             #{network},

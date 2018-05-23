@@ -1,19 +1,22 @@
 package com.zhenhui.demo.falcon.core.domain;
 
+import com.zhenhui.demo.falcon.core.support.utils.ChannelAttribute;
+import com.zhenhui.demo.falcon.core.support.utils.ChannelAttributesUtils;
 import io.netty.channel.Channel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Connection {
-    @NonNull
+
     private final Channel channel;
 
-    private UniqueID deviceId;
-
     private Protocol protocol;
+
+    public UniqueID deviceId() {
+        return (UniqueID) ChannelAttributesUtils.get(channel, ChannelAttribute.DEVICE_ID);
+    }
 
     public void sendCommand(Command command) {
         protocol.sendCommand(this, command);
@@ -28,7 +31,7 @@ public class Connection {
         if (this == o) { return true; }
         if (o == null || getClass() != o.getClass()) { return false; }
         Connection that = (Connection)o;
-        return this.channel.id().equals(that.channel.id());
+        return channel.id().equals(that.channel.id());
     }
 
     @Override

@@ -38,6 +38,8 @@ public class DeviceManagerImpl implements DeviceManager {
     public Device getDevice(UniqueID deviceId) {
         return deviceDAO.queryDevice(deviceId);
     }
+
 }
+
 
 

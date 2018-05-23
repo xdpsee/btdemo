@@ -21,13 +21,13 @@ import java.util.Collections;
 import com.zhenhui.demo.falcon.core.domain.Event;
 import com.zhenhui.demo.falcon.core.domain.EventType;
 import com.zhenhui.demo.falcon.core.domain.Position;
-import com.zhenhui.demo.falcon.core.support.Context;
+import com.zhenhui.demo.falcon.core.server.ServerConnector;
 import com.zhenhui.demo.falcon.core.support.handler.AbstractEventHandler;
 
 public class AlertEventHandler extends AbstractEventHandler {
 
-    public AlertEventHandler(Context context) {
-        super(context);
+    public AlertEventHandler(ServerConnector connector) {
+        super(connector);
     }
 
     @Override

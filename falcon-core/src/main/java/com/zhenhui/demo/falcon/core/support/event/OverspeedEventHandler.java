@@ -23,15 +23,15 @@ import com.zhenhui.demo.falcon.core.domain.Device;
 import com.zhenhui.demo.falcon.core.domain.Event;
 import com.zhenhui.demo.falcon.core.domain.EventType;
 import com.zhenhui.demo.falcon.core.domain.Position;
-import com.zhenhui.demo.falcon.core.support.Context;
+import com.zhenhui.demo.falcon.core.server.ServerConnector;
 import com.zhenhui.demo.falcon.core.support.handler.AbstractEventHandler;
 
 public class OverspeedEventHandler extends AbstractEventHandler {
 
     private final boolean notRepeat;
 
-    public OverspeedEventHandler(Context context) {
-        super(context);
+    public OverspeedEventHandler(ServerConnector connector) {
+        super(connector);
         notRepeat = configs().getBoolean(Configs.EVENT_OVERSPEED_NOT_REPEAT);
     }
 

@@ -6,7 +6,7 @@ import com.zhenhui.demo.falcon.manager.utils.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@SuppressWarnings({"SpringJavaAutowiringInspection", "SpringJavaInjectionPointsAutowiringInspection"})
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @Component
 public class EventDAO {
 

@@ -23,18 +23,18 @@ import com.zhenhui.demo.falcon.core.domain.Device;
 import com.zhenhui.demo.falcon.core.domain.Event;
 import com.zhenhui.demo.falcon.core.domain.EventType;
 import com.zhenhui.demo.falcon.core.domain.Position;
-import com.zhenhui.demo.falcon.core.support.Context;
+import com.zhenhui.demo.falcon.core.server.ServerConnector;
 import com.zhenhui.demo.falcon.core.support.handler.AbstractEventHandler;
 
 public class IgnitionEventHandler extends AbstractEventHandler {
 
-    public IgnitionEventHandler(Context context) {
-        super(context);
+    public IgnitionEventHandler(ServerConnector connector) {
+        super(connector);
     }
 
     @Override
     protected Collection<Event> analyzePosition(Position position) {
-        Device device = context.getDeviceManager().getDevice(position.getDeviceId());
+        Device device = connector.getContext().getDeviceManager().getDevice(position.getDeviceId());
         if (device == null || !positionService().isLastPosition(position)) {
             return null;
         }

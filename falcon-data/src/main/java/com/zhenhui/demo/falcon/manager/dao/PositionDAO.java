@@ -5,7 +5,7 @@ import com.zhenhui.demo.falcon.manager.mybatis.mapper.PositionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@SuppressWarnings({"SpringJavaAutowiringInspection", "SpringJavaInjectionPointsAutowiringInspection"})
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @Component
 public class PositionDAO {
 

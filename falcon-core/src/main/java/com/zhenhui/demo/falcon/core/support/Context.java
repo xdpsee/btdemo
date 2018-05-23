@@ -6,20 +6,20 @@ import com.zhenhui.demo.falcon.core.manager.EventManager;
 import com.zhenhui.demo.falcon.core.manager.PositionManager;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NonNull;
 
 @AllArgsConstructor
 public final class Context {
 
-    @Getter
+    @Getter @NonNull
     private final Configs configs;
-
-    @Getter
+    
+    @Getter @NonNull
     private final DeviceManager deviceManager;
 
-    @Getter
+    @Getter @NonNull
     private final PositionManager positionManager;
 
-    @Getter
+    @Getter @NonNull
     private final EventManager eventManager;
-
 }

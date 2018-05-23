@@ -23,14 +23,14 @@ import com.zhenhui.demo.falcon.core.domain.Device;
 import com.zhenhui.demo.falcon.core.domain.Event;
 import com.zhenhui.demo.falcon.core.domain.EventType;
 import com.zhenhui.demo.falcon.core.domain.Position;
-import com.zhenhui.demo.falcon.core.support.Context;
+import com.zhenhui.demo.falcon.core.server.ServerConnector;
 import com.zhenhui.demo.falcon.core.support.handler.AbstractEventHandler;
 
 public class MaintenanceEventHandler extends AbstractEventHandler {
 
 
-    public MaintenanceEventHandler(Context context) {
-        super(context);
+    public MaintenanceEventHandler(ServerConnector connector) {
+        super(connector);
     }
 
     @Override

@@ -1,12 +1,12 @@
 package com.zhenhui.demo.falcon.core.support.handler;
 
 import com.zhenhui.demo.falcon.core.domain.Position;
-import com.zhenhui.demo.falcon.core.support.Context;
+import com.zhenhui.demo.falcon.core.server.ServerConnector;
 
 public class DefaultDataHandler extends AbstractDataHandler {
 
-    public DefaultDataHandler(Context context) {
-        super(context);
+    public DefaultDataHandler(ServerConnector connector) {
+        super(connector);
     }
 
     @Override

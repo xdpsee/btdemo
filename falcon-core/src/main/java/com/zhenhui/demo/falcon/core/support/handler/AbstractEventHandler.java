@@ -4,12 +4,12 @@ import java.util.Collection;
 
 import com.zhenhui.demo.falcon.core.domain.Event;
 import com.zhenhui.demo.falcon.core.domain.Position;
-import com.zhenhui.demo.falcon.core.support.Context;
+import com.zhenhui.demo.falcon.core.server.ServerConnector;
 
 public abstract class AbstractEventHandler extends AbstractDataHandler {
 
-    public AbstractEventHandler(Context context) {
-        super(context);
+    public AbstractEventHandler(ServerConnector connector) {
+        super(connector);
     }
 
     @Override
@@ -21,7 +21,7 @@ public abstract class AbstractEventHandler extends AbstractDataHandler {
                 eventService().saveEvent(event);
             }
         }
-
+        
         return position;
     }
 

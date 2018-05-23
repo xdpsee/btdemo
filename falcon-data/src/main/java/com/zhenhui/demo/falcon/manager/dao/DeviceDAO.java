@@ -17,7 +17,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
-@SuppressWarnings({"SpringJavaAutowiringInspection", "SpringJavaInjectionPointsAutowiringInspection"})
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @Component
 @CacheConfig(cacheNames = "devices")
 public class DeviceDAO {
@@ -38,7 +38,7 @@ public class DeviceDAO {
 
         if (!model.getProtocol().equals(device.getProtocol())) {
             throw new ProtocolException(
-                String.format("protocol mismatch, %s-%s", model.getProtocol(), device.getProtocol()));
+                String.format("getProtocol mismatch, %s-%s", model.getProtocol(), device.getProtocol()));
         }
 
         try {

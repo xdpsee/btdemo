@@ -11,5 +11,6 @@ public interface DeviceManager {
     Device getDevice(UniqueID deviceId);
 
     Set<CommandType> getSupportedCommands(UniqueID deviceId);
+
 }
 
