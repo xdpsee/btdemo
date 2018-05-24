@@ -7,7 +7,7 @@ public class Command extends Attributes {
 
     private CommandType type;
 
-    private long deviceId;
+    private UniqueID deviceId;
 
     public static final String KEY_UNIQUE_ID = "unique-id";
     public static final String KEY_FREQUENCY = "frequency";

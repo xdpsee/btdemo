@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -13,9 +14,9 @@ public class UniqueID implements Serializable {
 
     private static final long serialVersionUID = -12312335569703L;
 
-    @NonNull
+    @NonNull @Getter
     private Type type;
-    @NonNull
+    @NonNull @Getter
     private String value;
 
     @Override

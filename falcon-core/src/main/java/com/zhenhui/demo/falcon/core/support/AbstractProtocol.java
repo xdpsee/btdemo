@@ -4,13 +4,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.xml.bind.DatatypeConverter;
-
 import com.zhenhui.demo.falcon.core.domain.Command;
 import com.zhenhui.demo.falcon.core.domain.CommandType;
 import com.zhenhui.demo.falcon.core.domain.Connection;
 import com.zhenhui.demo.falcon.core.domain.Protocol;
-import io.netty.buffer.Unpooled;
 import io.netty.handler.codec.string.StringEncoder;
 
 public abstract class AbstractProtocol implements Protocol {
@@ -47,7 +44,8 @@ public abstract class AbstractProtocol implements Protocol {
             if (connection.getChannel().pipeline().get(StringEncoder.class) != null) {
                 connection.write(data);
             } else {
-                connection.write(Unpooled.wrappedBuffer(DatatypeConverter.parseHexBinary(data)));
+                connection.write(command);
+               // connection.write(Unpooled.wrappedBuffer(DatatypeConverter.parseHexBinary(data)));
             }
         } else {
             throw new RuntimeException("Command " + command.getType() + " is not supported in getProtocol " + getName());

@@ -24,8 +24,9 @@ public class LoginMessageHandler extends AbstractHandler<LoginMessage> {
         logger.info("LoginMessageHandler.messageReceived: {}", msg);
 
         Command command = new Command();
+        command.setDeviceId(connection.deviceId());
         command.setType(CommandType.TYPE_CUSTOM);
-        command.set(Command.KEY_DATA, "4F4B");
+        command.set(Command.KEY_DATA, "OK");
 
         connection.sendCommand(command);
     }

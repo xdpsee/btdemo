@@ -1,26 +1,11 @@
 package com.zhenhui.demo.falcon.manager.utils;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
-
 import org.mybatis.spring.MyBatisSystemException;
 import org.springframework.dao.DuplicateKeyException;
 
-public class ExceptionUtils {
+public class ExceptionUtils extends com.zhenhui.demo.falcon.core.support.utils.ExceptionUtils {
 
     private static final String DUPLICATION_ENTRY_STRING = "Duplicate entry";
-
-    public static String getStackTrace(Throwable aThrowable) {
-        if (null != aThrowable) {
-            final Writer result = new StringWriter();
-            final PrintWriter printWriter = new PrintWriter(result);
-            aThrowable.printStackTrace(printWriter);
-            return result.toString().replaceAll("\\n", "-");
-        }
-
-        return "";
-    }
 
     public static boolean hasDuplicateEntryException(Exception e) {
 

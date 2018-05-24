@@ -7,6 +7,7 @@ import com.zhenhui.demo.falcon.core.support.handler.DefaultDataHandler;
 import com.zhenhui.demo.falcon.core.support.handler.filter.DefaultDataFilter;
 import com.zhenhui.demo.falcon.server.mobile.decoder.MobileFrameDecoder;
 import com.zhenhui.demo.falcon.server.mobile.decoder.MobileProtocolDecoder;
+import com.zhenhui.demo.falcon.server.mobile.encoder.MobileProtocolEncoder;
 import com.zhenhui.demo.falcon.server.mobile.handler.LoginMessageHandler;
 import io.netty.channel.ChannelPipeline;
 
@@ -23,12 +24,14 @@ public class MobileServerConnector extends AbstractServerConnector {
 
     @Override
     public void initPipeline(ChannelPipeline pipeline) {
-        pipeline.addLast("frameDecoder", new MobileFrameDecoder());
-        pipeline.addLast("protocolDecoder", new MobileProtocolDecoder());
+        pipeline.addLast("frame-decoder", new MobileFrameDecoder());
+        pipeline.addLast("decoder", new MobileProtocolDecoder());
 
-        pipeline.addLast("loginHandler", new LoginMessageHandler(this));
-        pipeline.addLast("filterHandler", new DefaultDataFilter(this, null));
-        pipeline.addLast("dataHandler", new DefaultDataHandler(this));
+        pipeline.addLast("login-handler", new LoginMessageHandler(this));
+        pipeline.addLast("filter-handler", new DefaultDataFilter(this, null));
+        pipeline.addLast("data-handler", new DefaultDataHandler(this));
+        pipeline.addLast("encoder", new MobileProtocolEncoder());
     }
 }
+
 
