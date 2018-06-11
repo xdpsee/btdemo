@@ -13,11 +13,11 @@
 
     <bean id="context" class="com.zhenhui.demo.falcon.core.support.Context">
         <constructor-arg name="configs" ref="configs"/>
-        <constructor-arg name="deviceManager" ref="deviceManagerImpl"/>
-        <constructor-arg name="positionManager" ref="positionManagerImpl"/>
-        <constructor-arg name="eventManager" ref="eventManagerImpl"/>
+        <constructor-arg name="deviceService" ref="deviceServiceImpl"/>
+        <constructor-arg name="positionService" ref="positionServiceImpl"/>
+        <constructor-arg name="eventService" ref="eventServiceImpl"/>
     </bean>
-    
+
     <bean id="server" class="com.zhenhui.demo.falcon.core.server.DefaultServer"
           init-method="start">
         <constructor-arg name="connectors">
